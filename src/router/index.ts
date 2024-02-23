@@ -1,7 +1,7 @@
 /*
  * @Author: twj
  * @Date: 2024-01-25 11:46:17
- * @LastEditTime: 2024-01-30 13:46:12
+ * @LastEditTime: 2024-02-22 11:16:59
  * @LastEditors: twj
  * @Description:路由导航
  */
@@ -12,7 +12,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "cesiumLoadMap",
     component: () => import("../views/cesiumLoadMap.vue"),
     meta: {
-      title: "Cesium地图",
+      title: "CesiumMap",
       activePath: "/cesiumLoadMap",
       showInMenu: true,
       icon: "el-icon-house",
@@ -45,8 +45,30 @@ export const routes: Array<RouteRecordRaw> = [
     name: "trajectoryTracking",
     component: () => import("../views/TrajectoryTracking.vue"),
     meta: {
-      title: "trajectoryTracking",
+      title: "TrajectoryTracking",
       activePath: "/trajectoryTracking",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/particleSystem",
+    name: "ParticleSystem",
+    component: () => import("../views/ParticleSystem.vue"),
+    meta: {
+      title: "ParticleSystem",
+      activePath: "/particleSystem",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/particleSystemPanel",
+    name: "particleSystemPanel",
+    component: () => import("../views/ParticleSystemPanel.vue"),
+    meta: {
+      title: "ParticleSystemPanel",
+      activePath: "/particleSystemPanel",
       showInMenu: true,
       icon: "el-icon-house",
     },
