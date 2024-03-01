@@ -1,7 +1,7 @@
 <!--
  * @Author: twj
  * @Date: 2024-01-25 10:48:06
- * @LastEditTime: 2024-02-22 18:23:05
+ * @LastEditTime: 2024-03-01 11:35:59
  * @LastEditors: twj
  * @Description: 
 -->
@@ -40,11 +40,7 @@ const initMap = () => {
 };
 const resetCameraFunction = () => {
   scene.camera.setView({
-    destination: new Cesium.Cartesian3(
-      277096.634865404,
-      5647834.481964232,
-      2985563.7039122293
-    ),
+    destination: Cesium.Cartesian3.fromDegrees(113, 27, 5000),
     orientation: {
       heading: 4.731089976107251,
       pitch: -0.32003481981370063,
@@ -54,7 +50,6 @@ const resetCameraFunction = () => {
 
 let snowGravityScratch = new Cesium.Cartesian3();
 const snowParticleSize = 12.0;
-const snowRadius = 100000.0;
 const minimumSnowImageSize = new Cesium.Cartesian2(
   snowParticleSize,
   snowParticleSize
@@ -69,8 +64,6 @@ const snowUpdate = (particle: {
   velocity: Cesium.Cartesian3;
   endColor: { alpha: number };
 }) => {
-  // console.log(particle.velocity);
-
   //根据传入坐标创建归一化向量（方向单位向量）
   snowGravityScratch = Cesium.Cartesian3.normalize(
     particle.position,
@@ -89,24 +82,56 @@ const snowUpdate = (particle: {
     particle.velocity
   );
 };
-let snowParticlePrimitives: any;
+
+//局部旋转矩阵
+const ratationAngle = Cesium.Math.toRadians(30);
+const ratationMatrix = Cesium.Matrix4.fromRotationTranslation(
+  Cesium.Matrix3.fromRotationX(ratationAngle)
+);
+const computeEmitterModelMatrixSnow = Cesium.Matrix4.multiplyByMatrix3(
+  ratationMatrix,
+  Cesium.Matrix3.fromRotationZ(Cesium.Math.toRadians(20)),
+  new Cesium.Matrix4()
+);
+
+const emitterModelMatrix = new Cesium.Matrix4();
+const translation = new Cesium.Cartesian3();
+const rotation = new Cesium.Quaternion();
+let hpr = new Cesium.HeadingPitchRoll();
+const trs = new Cesium.TranslationRotationScale(); //由平移、旋转和缩放定义的仿射变换。
+
+//计算发射器模型矩阵
+const computeEmitterModelMatrixRain = () => {
+  //设置头、俯仰角、旋转角度和旋转轴
+  hpr = Cesium.HeadingPitchRoll.fromDegrees(0, 0, 60, hpr);
+  //设置平移
+  trs.translation = Cesium.Cartesian3.fromElements(0, 0, 0, translation);
+  //设置旋转
+  trs.rotation = Cesium.Quaternion.fromHeadingPitchRoll(hpr, rotation);
+  //返回仿射变换矩阵
+  return Cesium.Matrix4.fromTranslationRotationScale(trs, emitterModelMatrix);
+};
+
+let snowParticlePrimitives: Cesium.Primitive;
 const startSnow = () => {
   scene.primitives.removeAll(); //为什么要移除全部？？？会不会有不好的影响？因为entity也是转换为primitive
-  console.log(Cesium.Matrix4.fromTranslation(scene.camera.position));
 
   snowParticlePrimitives = scene.primitives.add(
     new Cesium.ParticleSystem({
-      modelMatrix: Cesium.Matrix4.fromTranslation(scene.camera.position), //4*4变换矩阵，将粒子系统从模型坐标转换为世界坐标的 4x4 变换矩阵。
-      minimumSpeed: -1.0, //设置最小限度（以米/秒为单位），超过该限值将随机选择粒子的实际速度。
-      maximumSpeed: 0.0, //设置最大界限（以米/秒为单位），低于该界限将随机选择粒子的实际速度。
-      lifetime: 15.0, //粒子系统发射粒子的时间，以秒为单位。
+      modelMatrix: Cesium.Matrix4.fromTranslation(
+        Cesium.Cartesian3.fromDegrees(113, 27, 10000)
+      ),
+      emitterModelMatrix: computeEmitterModelMatrixSnow,
+      minimumSpeed: -1.0,
+      maximumSpeed: 0.0,
+      lifetime: 15.0,
       emitter: new Cesium.BoxEmitter(
         new Cesium.Cartesian3(10000, 10000, 10000)
       ), //粒子发射器。
       startScale: 0.5,
       endScale: 1.0,
       image: "/snowflake_particle.png",
-      emissionRate: 3000, //每秒发射的粒子数
+      emissionRate: 7000, //每秒发射的粒子数
       startColor: Cesium.Color.WHITE.withAlpha(0.0),
       endColor: Cesium.Color.WHITE.withAlpha(1.0),
       minimumImageSize: minimumSnowImageSize,
@@ -114,16 +139,10 @@ const startSnow = () => {
       updateCallback: snowUpdate,
     })
   );
-  scene.skyAtmosphere.hueShift = -0.8;
-  scene.skyAtmosphere.saturationShift = -0.7;
-  scene.skyAtmosphere.brightnessShift = -0.33;
-  scene.fog.density = 0.001;
-  scene.fog.minimumBrightness = 0.8;
 };
 
 // rain
 const rainParticleSize = 15.0;
-const rainRadius = 100000.0;
 const rainImageSize = new Cesium.Cartesian2(
   rainParticleSize,
   rainParticleSize * 2.0
@@ -150,28 +169,16 @@ const rainUpdate = (particle: {
     particle.velocity
   );
 };
-const emitterModelMatrix = new Cesium.Matrix4();
-const translation = new Cesium.Cartesian3();
-const rotation = new Cesium.Quaternion();
-let hpr = new Cesium.HeadingPitchRoll();
-const trs = new Cesium.TranslationRotationScale(); //由平移、旋转和缩放定义的仿射变换。
 
-//如何利用矩阵进行变换？？？
-const computeEmitterModelMatrix = () => {
-  hpr = Cesium.HeadingPitchRoll.fromDegrees(0.0, 0.0, 0.0, hpr);
-  trs.translation = Cesium.Cartesian3.fromElements(0, 0, 20000, translation);
-  trs.rotation = Cesium.Quaternion.fromHeadingPitchRoll(hpr, rotation);
-  return Cesium.Matrix4.fromTranslationRotationScale(trs, emitterModelMatrix);
-};
 //计算模型矩阵
-const computeModelMatrix = (primitive: { modelMatrix: any }) => {
+const computeModelMatrixRain = (primitive: Cesium.Primitive) => {
   return primitive.modelMatrix;
 };
 const startRain = () => {
   scene.primitives.add(
     new Cesium.ParticleSystem({
-      modelMatrix: computeModelMatrix(snowParticlePrimitives),
-      emitterModelMatrix: computeEmitterModelMatrix(),
+      modelMatrix: computeModelMatrixRain(snowParticlePrimitives),
+      emitterModelMatrix: computeEmitterModelMatrixRain(),
       minimumSpeed: -1.0, //设置最小限度（以米/秒为单位），超过该限值将随机选择粒子的实际速度。
       maximumSpeed: 0.0, //设置最大界限（以米/秒为单位），低于该界限将随机选择粒子的实际速度。
       lifetime: 1.0, //粒子系统发射粒子的时间，以秒为单位。

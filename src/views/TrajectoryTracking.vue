@@ -1,13 +1,14 @@
 <!--
  * @Author: twj
  * @Date: 2024-01-25 10:48:06
- * @LastEditTime: 2024-02-02 17:10:51
+ * @LastEditTime: 2024-02-29 17:21:59
  * @LastEditors: twj
  * @Description: 轨迹回放
 -->
 <template>
   <div id="viewContainer"></div>
 </template>
+
 <script setup lang="ts">
 import * as Cesium from "cesium";
 import { onMounted } from "vue";
@@ -18,7 +19,8 @@ Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYTVhNjE0YS02YWVhLTQxNTAtYWI5NS1jYzUwMzliNmRjYjciLCJpZCI6OTc4NDgsImlhdCI6MTY1NTM4NDM0OH0.aT_4OCAgJ95R0l6Tg--u4jo9Ky6TlFa40p-8OxzYy2M";
 
 let viewer: Cesium.Viewer;
-//静态轨迹坐标经纬度
+// 静态轨迹坐标经纬度
+
 let lnglatArr = [
   [121.527589, 38.957547],
   [121.527825, 38.960166],
@@ -28,7 +30,7 @@ let lnglatArr = [
   [121.542888, 38.955861],
   [121.542266, 38.953325],
 ];
-let timeObj: { timeSum: any; siteTime: any };
+let timeObj: { timeSum: number; siteTime: number[] };
 let starTime: Cesium.JulianDate;
 let stopTime: Cesium.JulianDate;
 // 初始化地图
@@ -129,9 +131,9 @@ const craetedEintiyTrack = () => {
     ]),
     position: property,
     orientation: new Cesium.VelocityOrientationProperty(property),
-    billboard: {
-      image: "/public/liechejiantou.png",
-      verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+    model: {
+      uri: "/public/Cesium_Air.glb",
+      maximumScale:268,
     },
     path: {
       resolution: 1,

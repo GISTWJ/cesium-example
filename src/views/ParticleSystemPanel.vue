@@ -1,7 +1,7 @@
 <!--
  * @Author: twj
  * @Date: 2024-01-25 10:48:06
- * @LastEditTime: 2024-02-23 10:13:31
+ * @LastEditTime: 2024-02-29 16:37:27
  * @LastEditors: twj
  * @Description: 
 -->
@@ -222,6 +222,7 @@ const stopTime = Cesium.JulianDate.addSeconds(
 
 // 初始化地图
 const initMap = async () => {
+  // 初始化cesium地图，并设置一些参数
   viewer = new Cesium.Viewer("viewContainer", {
     infoBox: false,
     baseLayerPicker: false, //右上角图层选择按钮
@@ -232,9 +233,13 @@ const initMap = async () => {
     fullscreenButton: false, //右下角全屏按钮
     terrainProvider: await Cesium.createWorldTerrainAsync(),
   });
+  // 获取场景
   scene = viewer.scene;
+  // 添加实体
   addEntity();
+  // 添加粒子系统
   addParticleSystem();
+  // 监听场景更新，更新粒子系统的模型矩阵
   scene.preUpdate.addEventListener((_scene, time) => {
     particleSystem.modelMatrix = computeModelMatrix(entityAir, time);
     particleSystem.emitterModelMatrix = computeEmitterModelMatrix();
@@ -278,14 +283,11 @@ const addEntity = () => {
 };
 
 //计算模型矩阵
-const computeModelMatrix = (
-  entity: { computeModelMatrix: (arg0: any, arg1: Cesium.Matrix4) => any },
-  time: any
-) => {
+const computeModelMatrix = (entity: Cesium.Entity, time: Cesium.JulianDate) => {
   return entity.computeModelMatrix(time, new Cesium.Matrix4());
 };
 
-let particleSystem: Cesium.ParticleSystem;//粒子系统
+let particleSystem: Cesium.ParticleSystem; //粒子系统
 const addParticleSystem = () => {
   particleSystem = scene.primitives.add(
     new Cesium.ParticleSystem({
@@ -342,7 +344,7 @@ const computeEmitterModelMatrix = () => {
 const gravityScratch = new Cesium.Cartesian3();
 //粒子系统的更新的回调函数
 const applyGravity = (
-  p: { position: any; velocity: Cesium.Cartesian3 },
+  p: { position: Cesium.Cartesian3; velocity: Cesium.Cartesian3 },
   dt: number
 ) => {
   const position = p.position;
@@ -354,7 +356,7 @@ const applyGravity = (
     gravity.value * -dt,
     gravityScratch
   );
-  //向量和
+  //向量之和
   p.position = Cesium.Cartesian3.add(p.position, gravityScratch, p.position);
 };
 
