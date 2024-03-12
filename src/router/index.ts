@@ -1,7 +1,7 @@
 /*
  * @Author: twj
  * @Date: 2024-01-25 11:46:17
- * @LastEditTime: 2024-02-22 11:16:59
+ * @LastEditTime: 2024-03-05 09:31:21
  * @LastEditors: twj
  * @Description:路由导航
  */
@@ -69,6 +69,17 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       title: "ParticleSystemPanel",
       activePath: "/particleSystemPanel",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/measureTool",
+    name: "measureTool",
+    component: () => import("../views/MeasureTool.vue"),
+    meta: {
+      title: "MeasureTool",
+      activePath: "/measureTool",
       showInMenu: true,
       icon: "el-icon-house",
     },
