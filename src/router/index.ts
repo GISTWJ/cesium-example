@@ -85,6 +85,39 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/webgl2DScale",
+    name: "webgl2DScale",
+    component: () => import("../views/Webgl2DScale.vue"),
+    meta: {
+      title: "Webgl2DScale",
+      activePath: "/webgl2DScale",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/webglMatrix",
+    name: "webglMatrix",
+    component: () => import("../views/WebglMatrix.vue"),
+    meta: {
+      title: "WebglMatrix",
+      activePath: "/webglMatrix",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/clickToDraw",
+    name: "clickToDraw",
+    component: () => import("../views/ClickToDraw.vue"),
+    meta: {
+      title: "ClickToDraw",
+      activePath: "/clickToDraw",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
     path: "/",
     redirect: "/cesiumLoadMap",
   },

@@ -1,10 +1,3 @@
-/*
- * @Author: twj
- * @Date: 2024-02-29 16:08:49
- * @LastEditTime: 2024-02-29 16:52:08
- * @LastEditors: twj
- * @Description:
- */
 module.exports = {
   env: {
     browser: true,
