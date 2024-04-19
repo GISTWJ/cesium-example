@@ -272,5 +272,7 @@ onBeforeUnmount(() => {
 <style scoped>
 canvas {
     border: 1px dashed salmon;
+    height: calc(100vh - 100px);
+    width: calc(100vw - 260px);
 }
 </style>

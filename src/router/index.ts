@@ -118,6 +118,39 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/tweenAnimation",
+    name: "tweenAnimation",
+    component: () => import("../views/TweenAnimation.vue"),
+    meta: {
+      title: "TweenAnimation",
+      activePath: "/tweenAnimation",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/mouseDrawLine",
+    name: "mouseDrawLine",
+    component: () => import("../views/MouseDrawLine.vue"),
+    meta: {
+      title: "MouseDrawLine",
+      activePath: "/mouseDrawLine",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
+    path: "/drawConstellation",
+    name: "drawConstellation",
+    component: () => import("../views/DrawConstellation.vue"),
+    meta: {
+      title: "DrawConstellation",
+      activePath: "/drawConstellation",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
     path: "/",
     redirect: "/cesiumLoadMap",
   },

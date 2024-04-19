@@ -4,6 +4,8 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { initProgram } from "../utils/WebGLUtils"
+import Compose from '../utils/Compose.ts'
+import Track from '../utils/Track.ts'
 const vertex = `
     attribute vec4 a_Position;
     attribute float a_PointSize;
@@ -34,17 +36,6 @@ const initCanvas = () => {
     return canvas;
 }
 
-const a_points: {
-    x: number;
-    y: number;
-    size: number;
-    color: {
-        r: number;
-        g: number;
-        b: number;
-        a: number;
-    }
-}[] = [];//存储所有点的坐标与信息
 let a_Position: number
 let a_PointSize: number;
 let u_FragColor: WebGLUniformLocation;
@@ -55,26 +46,25 @@ const draw = (
         x: number,
         y: number,
         size: number,
-        color: {
-            r: number;
-            g: number;
-            b: number;
-            a: number;
-        }
+        a: number;
     }[]) => {
     const program = initProgram(gl, vertex, fragment);
     a_Position = gl.getAttribLocation(program, "a_Position");
     a_PointSize = gl.getAttribLocation(program, 'a_PointSize');
     u_FragColor = gl.getUniformLocation(program, 'u_FragColor') as WebGLUniformLocation;
     gl.clear(gl.COLOR_BUFFER_BIT);
-    points.forEach(({ x, y, size, color: { r, g, b, a } }) => {
+    points.forEach(({ x, y, size, a }) => {
         gl.vertexAttrib2f(a_Position, x, y);
         gl.vertexAttrib1f(a_PointSize, size);
-        const arr = new Float32Array([r, g, b, a]);
+        const arr = new Float32Array([Math.random(), Math.random(), Math.random(), a]);
         gl.uniform4fv(u_FragColor, arr);
         gl.drawArrays(gl.POINTS, 0, 1)
     });
 }
+
+const stars: { x: number; y: number; size: number; a: number; }[] = [];
+const compose = new Compose();
+
 const addCanvasListener = (canvas: HTMLCanvasElement, gl: WebGLRenderingContext,) => {
     // 鼠标点击事件
     canvas.addEventListener("click", ({ clientX, clientY }) => {
@@ -91,18 +81,40 @@ const addCanvasListener = (canvas: HTMLCanvasElement, gl: WebGLRenderingContext,
         const yBaseCenterTop = -yBaseCenter;
         //解决坐标基底的差异
         const [x, y] = [xBaseCenter / halfWidth, yBaseCenterTop / halfHeight];
-        const size = Math.random() * 50 + 10;
-        const color = { r: Math.random(), g: Math.random(), b: Math.random(), a: 1 };
-        a_points.push({ x, y, size, color })
+        const size = Math.random() * 10 + 10;
+        const a = 1;//透明度
+        const obj = { x, y, size, a }
+        stars.push(obj)
+        const track = new Track(obj)
+        track.start = new Date();
+        track.timeLen = 2000;
+        track.loop = true;
+
+        track.keyMap = new Map([
+            [
+                "a",
+                [
+                    [5, 1],
+                    [1005, 0],
+                    [2005, 1],
+                ],
+            ],
+        ]);
+        compose.add(track);
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT);
-        draw(gl, a_points)
+        draw(gl, stars)
     });
 }
 const main = () => {
     const canvas = initCanvas()
     const gl = canvas.getContext("webgl") as WebGLRenderingContext;
-    addCanvasListener(canvas, gl,)
+    addCanvasListener(canvas, gl,);
+    (function ani() {
+        compose.update(new Date());
+        draw(gl, stars);
+        requestAnimationFrame(ani);
+    })();
 }
 
 onMounted(() => {

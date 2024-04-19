@@ -1,5 +1,5 @@
 <template>
-    <canvas width="500" height="500"></canvas>
+    <canvas width="1205" height="832"></canvas>
 </template>
 <script setup lang="ts">
 import { GUI } from 'dat.gui';
@@ -143,8 +143,6 @@ const updateScale = (index: number, value: number) => {
 //绘制场景
 const drawScene = (p: WebGLProgram | null, gl: WebGLRenderingContext) => {
     console.log(111);
-
-    // resizeCanvasToDisplaySize(gl.canvas as HTMLCanvasElement, 1);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -166,42 +164,18 @@ const drawScene = (p: WebGLProgram | null, gl: WebGLRenderingContext) => {
     );
 
 
-    // gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
-    // const projectionMatrix = m3.projection((gl.canvas as HTMLCanvasElement).clientWidth, (gl.canvas as HTMLCanvasElement).clientHeight);
-    // const projectionMatrix = m3.projection((gl.canvas as HTMLCanvasElement).width, (gl.canvas as HTMLCanvasElement).height);
 
-
-    // let matrix = m3.identity();
     let matrix = m3.projection((gl.canvas as HTMLCanvasElement).clientWidth, (gl.canvas as HTMLCanvasElement).clientHeight);
-    // matrix = m3.multiply(matrix, projectionMatrix);
-    // const moveOriginMatrix = m3.translation(-30, -150);//指定旋转中心
-
     matrix = m3.translate(matrix, translation[0], translation[1]);
     matrix = m3.rotate(matrix, angleInRadians);
     matrix = m3.scale(matrix, scale[0], scale[1]);
-    // matrix = m3.multiply(matrix, moveOriginMatrix);
 
 
     gl.uniformMatrix3fv(matrixLocation, false, matrix);
     const primitiveType = gl.TRIANGLES;
-    // const offset = 0;
-    // const count = 18;  // 6 triangles in the 'F', 3 points per triangle
     gl.drawArrays(primitiveType, 0, 18);
 
 }
-
-//调整canvas大小
-// const resizeCanvasToDisplaySize = (canvas: HTMLCanvasElement, multiplier: number | undefined) => {
-//     multiplier = multiplier || 1;
-//     const width = canvas.clientWidth * multiplier | 0;
-//     const height = canvas.clientHeight * multiplier | 0;
-//     if (canvas.width !== width || canvas.height !== height) {
-//         canvas.width = width;
-//         canvas.height = height;
-//         return true;
-//     }
-//     return false;
-// }
 const m3 = {
     identity: function () {
         return [
@@ -211,7 +185,7 @@ const m3 = {
         ];
     },
 
-    translation: function (tx, ty) {
+    translation: function (tx: number, ty: number) {
         return [
             1, 0, 0,
             0, 1, 0,
@@ -219,7 +193,7 @@ const m3 = {
         ];
     },
 
-    rotation: function (angleInRadians) {
+    rotation: function (angleInRadians: number) {
         const c = Math.cos(angleInRadians);
         const s = Math.sin(angleInRadians);
         return [
@@ -229,7 +203,7 @@ const m3 = {
         ];
     },
 
-    scaling: function (sx, sy) {
+    scaling: function (sx: number, sy: number) {
         return [
             sx, 0, 0,
             0, sy, 0,
@@ -237,7 +211,7 @@ const m3 = {
         ];
     },
 
-    multiply: function (a: any[], b: any[]) {
+    multiply: function (a: number[], b: number[]) {
         const a00 = a[0 * 3 + 0];
         const a01 = a[0 * 3 + 1];
         const a02 = a[0 * 3 + 2];
@@ -275,15 +249,15 @@ const m3 = {
             -1, 1, 1
         ]
     },
-    translate: function (m: any, tx: any, ty: any) {
+    translate: function (m: number[], tx: number, ty: number) {
         return m3.multiply(m, m3.translation(tx, ty));
     },
 
-    rotate: function (m: any, angleInRadians: any) {
+    rotate: function (m: number[], angleInRadians: number) {
         return m3.multiply(m, m3.rotation(angleInRadians));
     },
 
-    scale: function (m: any, sx: any, sy: any) {
+    scale: function (m: number[], sx: number, sy: number) {
         return m3.multiply(m, m3.scaling(sx, sy));
     },
 };
@@ -340,8 +314,8 @@ onBeforeUnmount(() => {
 canvas {
     border: 1px dashed salmon;
     /* background-color: aqua; */
-    width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 100px);
+    width: calc(100vw - 260px);
     display: block;
     /* width: 100%;
     height: 100%; */
