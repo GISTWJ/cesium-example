@@ -2,7 +2,6 @@
 export default class Poly {
   // 声明 gl 属性，并使用断言确保其不为空
   gl!: WebGLRenderingContext;
-  // 声明 program 属性，并使用断言确保其不为空
   program!: WebGLProgram; //赋值类型断言，表示一定会有值
   attrName: string = "a_Position"; // 声明 attrName 属性，并赋值为 "a_Position"
   uniName: string = "u_IsPOINTS"; // 声明 uniName 属性，并赋值为 "u_IsPOINTS"

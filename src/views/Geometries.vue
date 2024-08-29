@@ -12,7 +12,8 @@
 <script setup lang="ts">
 import * as Cesium from "cesium";
 import { onMounted } from "vue";
-
+import pyhsicalFence from "../assets/pyhsicalFence.png";
+import { CustomWallMaterial } from "../utils/CustomWallMaterial.ts";
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYTVhNjE0YS02YWVhLTQxNTAtYWI5NS1jYzUwMzliNmRjYjciLCJpZCI6OTc4NDgsImlhdCI6MTY1NTM4NDM0OH0.aT_4OCAgJ95R0l6Tg--u4jo9Ky6TlFa40p-8OxzYy2M";
 
@@ -45,11 +46,12 @@ const initMap = async () => {
       roll: 6.279925019467049,
     },
   });
-  viewer.scene.screenSpaceCameraController.enableCollisionDetection  = true;
+  viewer.scene.screenSpaceCameraController.enableCollisionDetection = true;
   viewer.zoomTo(viewer.entities);
-  loadPolygon();
-  loadBox();
-  loadCirclesAndEllipses();
+  // loadPolygon();
+  // loadBox();
+  // loadCirclesAndEllipses();
+  addWall();
 };
 //添加盒子
 const loadBox = () => {
@@ -92,15 +94,12 @@ const loadCirclesAndEllipses = () => {
   });
 };
 
-
 const loadPolygon = async () => {
   viewer.entities.add({
     name: "polygon",
     polygon: {
       hierarchy: Cesium.Cartesian3.fromDegreesArray([
-        120.2450822, 31.5480772,
-        120.2452152, 31.548077,
-        120.245215, 31.5479855,
+        120.2450822, 31.5480772, 120.2452152, 31.548077, 120.245215, 31.5479855,
         120.2450819, 31.5479858,
       ]),
       height: 0,
@@ -111,61 +110,41 @@ const loadPolygon = async () => {
       outlineColor: Cesium.Color.YELLOW,
       // outlineWidth: 0,
       arcType: Cesium.ArcType.RHUMB,
-    }
-  })
-  // const outlinePolygon = new Cesium.PolygonOutlineGeometry({
-  //   polygonHierarchy: new Cesium.PolygonHierarchy(
-  //     Cesium.Cartesian3.fromDegreesArray([
-  //       120.2450822, 31.5480772,
-  //       120.2452152, 31.548077,
-  //       120.245215, 31.5479855,
-  //       120.2450819, 31.5479858,
-  //     ])
-  //   ),
-  //   vertexFormat: Cesium.PerInstanceColorAppearance.VERTEX_FORMAT, // 使用PerInstanceColorAppearance以便设置颜色
-  //   extrudedHeight: 15,
-  //   arcType: Cesium.ArcType.RHUMB,
-  // });
-  // const outlineGeometry = Cesium.PolygonOutlineGeometry.createGeometry(outlinePolygon) as Cesium.Geometry;
+    },
+  });
 
-  // console.log("out", calculateHeight(Cesium.Cartesian3.fromDegreesArray([
-  //   120.2450822, 31.5480772,
-  //   120.2452152, 31.548077,
-  //   120.245215, 31.5479855,
-  //   120.2450819, 31.5479858,
-  // ])));
-  const res: number[] = []
+  const res: number[] = [];
   await sampleTerrainMostDetailed(
     Cesium.Cartesian3.fromDegreesArray([
-      120.2450822, 31.5480772,
-      120.2452152, 31.548077,
-      120.245215, 31.5479855,
+      120.2450822, 31.5480772, 120.2452152, 31.548077, 120.245215, 31.5479855,
       120.2450819, 31.5479858,
     ])
-  ).then(cartographic => {
+  ).then((cartographic) => {
     console.log("cartographic", cartographic);
-    cartographic.forEach(item => {
+    cartographic.forEach((item) => {
       // 获取经度、纬度和高度值
       const longitude = Cesium.Math.toDegrees(item.longitude);
       const latitude = Cesium.Math.toDegrees(item.latitude);
       const height = item.height;
-      res.push(longitude, latitude, height)
-    })
-  })
+      res.push(longitude, latitude, height);
+    });
+  });
   console.log("res", res);
 
-  const outlineGeometry = Cesium.PolygonOutlineGeometry.createGeometry(Cesium.PolygonOutlineGeometry.fromPositions({
-    positions: Cesium.Cartesian3.fromDegreesArrayHeights(res),
-    extrudedHeight: 28,
-    perPositionHeight: true
-  })) as Cesium.Geometry;
+  const outlineGeometry = Cesium.PolygonOutlineGeometry.createGeometry(
+    Cesium.PolygonOutlineGeometry.fromPositions({
+      positions: Cesium.Cartesian3.fromDegreesArrayHeights(res),
+      extrudedHeight: 28,
+      perPositionHeight: true,
+    })
+  ) as Cesium.Geometry;
   const outlineInstance = new Cesium.GeometryInstance({
     geometry: outlineGeometry,
     id: "outline",
     attributes: {
-      color: Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.BLUE) // 设置颜色为蓝色
-    }
-  })
+      color: Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.BLUE), // 设置颜色为蓝色
+    },
+  });
   const outlinePrimitive = new Cesium.Primitive({
     geometryInstances: outlineInstance,
     appearance: new Cesium.PerInstanceColorAppearance({
@@ -185,41 +164,61 @@ const loadPolygon = async () => {
     cull: true,
     debugShowBoundingVolume: false,
     shadows: Cesium.ShadowMode.DISABLED,
-  })
+  });
   viewer.scene.primitives.add(outlinePrimitive);
+};
 
-}
-
-// //根据给定的Cartesian3点数组计算高度
-// const calculateHeight = (cartesian3Array: Cesium.Cartesian3[]) => {
-//   const resultArray = []
-//   console.log(cartesian3Array);
-
-//   for (let i = 0; i < cartesian3Array.length; i++) {
-//     // 将Cartesian3点转换为Cartographic点
-//     const cartographic = Cesium.Cartographic.fromCartesian(cartesian3Array[i]);
-//     console.log(cartographic);
-
-//     // 获取经度、纬度和高度值
-//     const longitude = Cesium.Math.toDegrees(cartographic.longitude);
-//     const latitude = Cesium.Math.toDegrees(cartographic.latitude);
-//     const height = cartographic.height;
-
-//     // 将经纬度+高度信息存入结果数组
-//     resultArray.push([longitude, latitude, height]);
-//   }
-//   return resultArray
-// }
-
-const sampleTerrainMostDetailed = async (cartesian3Array: Cesium.Cartesian3[]) => {
+const sampleTerrainMostDetailed = async (
+  cartesian3Array: Cesium.Cartesian3[]
+) => {
   const terrainProvider = await Cesium.createWorldTerrainAsync();
-  const cartographicArr: Cesium.Cartographic[] = []
-  cartesian3Array.forEach(item => {
+  const cartographicArr: Cesium.Cartographic[] = [];
+  cartesian3Array.forEach((item) => {
     cartographicArr.push(Cesium.Cartographic.fromCartesian(item));
-  })
-  const updatedPositions = await Cesium.sampleTerrainMostDetailed(terrainProvider, cartographicArr);
-  return updatedPositions
-}
+  });
+  const updatedPositions = await Cesium.sampleTerrainMostDetailed(
+    terrainProvider,
+    cartographicArr
+  );
+  return updatedPositions;
+};
+
+const addWall = () => {
+  const wallPosition = Cesium.Cartesian3.fromDegreesArrayHeights([
+    118.78412525800837, 32.05663028529894, 37.4, 118.78405642070065,
+    32.05662439595121, 37.4, 118.78405991644611, 32.05659654004558, 37.4,
+    118.78398368582866, 32.05659420944936, 37.4, 118.78397030056603,
+    32.05666117945536, 37.4, 118.78412076376443, 32.05667333336961, 37.4,
+    118.78412525800837, 32.05663028529894, 37.4,
+  ]);
+  let wallLength = 0;
+  const imageWidthInMeters = 100;
+  for (let i = 1; i < wallPosition.length; i++) {
+    wallLength += Cesium.Cartesian3.distance(
+      wallPosition[i - 1],
+      wallPosition[i]
+    );
+  }
+  // 添加带有自定义材质的墙体
+  viewer.entities.add({
+    wall: {
+      positions: wallPosition,
+      material: new CustomWallMaterial({
+        iamge: pyhsicalFence,
+        wallLength: wallLength, // 墙体的总长度
+        imageWidth: imageWidthInMeters, // 图片的宽度
+      }),
+    },
+  });
+  // 设置相机视角以查看墙体
+  viewer.camera.setView({
+    destination: Cesium.Cartesian3.fromDegrees(
+      118.78412525800837,
+      32.05663028529894,
+      37.4
+    ),
+  });
+};
 onMounted(() => {
   initMap();
 });

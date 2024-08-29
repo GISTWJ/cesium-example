@@ -108,6 +108,8 @@ const createdProperty = (
   lnglatArr: number[][]
 ): Cesium.SampledPositionProperty => {
   const positionsArr = coordinateConversion(lnglatArr);
+  console.log(positionsArr);
+  
   const property = new Cesium.SampledPositionProperty();
   for (let i = 0; i < positionsArr.length; i++) {
     const time = Cesium.JulianDate.addSeconds(
@@ -122,6 +124,7 @@ const createdProperty = (
 };
 const craetedEintiyTrack = () => {
   const property = createdProperty(lnglatArr);
+  console.log(property)
   const trackEntity = viewer.entities.add({
     availability: new Cesium.TimeIntervalCollection([
       new Cesium.TimeInterval({
@@ -133,7 +136,7 @@ const craetedEintiyTrack = () => {
     orientation: new Cesium.VelocityOrientationProperty(property),
     model: {
       uri: "/public/Cesium_Air.glb",
-      maximumScale:268,
+      maximumScale: 268,
     },
     path: {
       resolution: 1,
@@ -141,6 +144,8 @@ const craetedEintiyTrack = () => {
       material: Cesium.Color.RED,
     },
   });
+  console.log("trackEntity",trackEntity.path);
+  
   viewer.trackedEntity = trackEntity;
 };
 onMounted(() => {

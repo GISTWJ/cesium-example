@@ -51,25 +51,27 @@ const initCanvas = () => {
 }
 
 
-
-const addCanvasListener = (canvas: HTMLCanvasElement) => {
+//绑定监听
+const bindCanvasListener = (canvas: HTMLCanvasElement) => {
+    //取消右键事件
     canvas.oncontextmenu = function () {
         return false
     }
     // 鼠标点击事件
     canvas.addEventListener('mousedown', (event) => {
         if (event.button === 2) {
-            popVertice()
+            popVertice();//取消绘制
         } else {
             const { x, y } = getMousePosInWebgl(event, canvas)
             if (poly) {
-                addVertice(x, y)
+                addVertice(x, y);//添加顶点数据
             } else {
-                crtPoly(x, y)
+                crtPoly(x, y);//创建多边形对象
             }
         }
         render()
     })
+    //鼠标移动事件
     canvas.addEventListener('mousemove', (event) => {
         const { x, y } = getMousePosInWebgl(event, canvas)
         point = hoverPoint(x, y, canvas)
@@ -84,6 +86,7 @@ const addCanvasListener = (canvas: HTMLCanvasElement) => {
 }
 
 let program: WebGLProgram
+
 const addVertice = (x: number, y: number) => {
     const { geoData } = poly as Poly
     if (point) {
@@ -93,6 +96,27 @@ const addVertice = (x: number, y: number) => {
     geoData.push(obj)
     crtTrack(obj)
 }
+const crtPoly = (x: number, y: number) => {
+    let o1 = point ? point : { x, y, pointSize: random(), alpha: 1 }
+    const o2 = { x, y, pointSize: random(), alpha: 1 }
+    poly = new Poly({
+        size: 4,
+        attrName: 'a_Attr',
+        geoData: [o1, o2],
+        types: ['POINTS', 'LINE_STRIP'],
+        circleDot: true,
+        program: program
+    })
+    sky?.add(poly)
+    crtTrack(o1)
+    crtTrack(o2)
+}
+
+const popVertice = () => {
+    poly?.popVertice()
+    poly = null
+}
+
 const crtTrack = (obj: pointType) => {
     const { pointSize } = obj
     const track = new Track(obj)
@@ -119,8 +143,9 @@ const crtTrack = (obj: pointType) => {
     ]);
     compose.add(track)
 }
+
 const hoverPoint = (mx: number, my: number, canvas: HTMLCanvasElement) => {
-    if (!sky) return
+    if (!sky) return null
     for (let { geoData } of sky.children) {
         for (let obj of geoData) {
             if (poly && obj === poly.geoData[poly.geoData.length - 1]) {
@@ -139,25 +164,7 @@ const hoverPoint = (mx: number, my: number, canvas: HTMLCanvasElement) => {
     }
     return null
 }
-const crtPoly = (x: number, y: number) => {
-    let o1 = point ? point : { x, y, pointSize: random(), alpha: 1 }
-    const o2 = { x, y, pointSize: random(), alpha: 1 }
-    poly = new Poly({
-        size: 4,
-        attrName: 'a_Attr',
-        geoData: [o1, o2],
-        types: ['POINTS', 'LINE_STRIP'],
-        circleDot: true,
-        program: program
-    })
-    sky?.add(poly)
-    crtTrack(o1)
-    crtTrack(o2)
-}
-const popVertice = () => {
-    poly?.popVertice()
-    poly = null
-}
+
 const render = () => {
     gl.clear(gl.COLOR_BUFFER_BIT);
     sky?.draw()
@@ -179,7 +186,7 @@ const main = () => {
     gl.clearColor(0, 0, 0, 1);
     //刷底色
     gl.clear(gl.COLOR_BUFFER_BIT);
-    addCanvasListener(canvas);
+    bindCanvasListener(canvas);
     (function ani() {
         compose.update(new Date())
         sky.updateVertices(['x', 'y', 'pointSize', 'alpha'])

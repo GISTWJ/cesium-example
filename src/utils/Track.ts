@@ -1,6 +1,8 @@
+import Compose from "./Compose";
+
 export default class Track {
   public target;
-  public parent: null;
+  public parent!: Compose;
   public start: Date;
   public timeLen: number;
   public loop: boolean;
@@ -9,7 +11,7 @@ export default class Track {
   keyMap: Map<string, number[][]>;
   constructor(target: { x: number; y: number; pointSize: number; alpha: number }) {
     this.target = target;
-    this.parent = null;
+    // this.parent = null;
     this.start = new Date();
     this.timeLen = 5;
     this.loop = false;
@@ -30,7 +32,7 @@ export default class Track {
     for (const [key, fms] of keyMap) {        
       const last = fms.length - 1;
       if (time < fms[0][0]) {
-        target[key] = fms[0][1];
+        target[key]  = fms[0][1];
       } else if (time > fms[last][0]) {
         target[key] = fms[last][1];
       } else {
@@ -54,4 +56,11 @@ function getValBetweenFms(time: number, fms: any[], last: number) {
       return k * time + b;
     }
   }
+}
+//优雅解决字符串当对象的key报错
+export function isValidKey(
+  key: string | number | symbol,
+  object: object
+): key is keyof typeof object {
+  return key in object;
 }
