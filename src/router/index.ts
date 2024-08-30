@@ -151,6 +151,17 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/cesiumMaterial",
+    name: "cesiumMaterial",
+    component: () => import("../views/CesiumMaterial.vue"),
+    meta: {
+      title: "CesiumMaterial",
+      activePath: "/cesiumMaterial",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
     path: "/",
     redirect: "/cesiumLoadMap",
   },

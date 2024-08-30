@@ -13,7 +13,6 @@
 import * as Cesium from "cesium";
 import { onMounted } from "vue";
 import pyhsicalFence from "../assets/pyhsicalFence.png";
-import { CustomWallMaterial } from "../utils/CustomWallMaterial.ts";
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYTVhNjE0YS02YWVhLTQxNTAtYWI5NS1jYzUwMzliNmRjYjciLCJpZCI6OTc4NDgsImlhdCI6MTY1NTM4NDM0OH0.aT_4OCAgJ95R0l6Tg--u4jo9Ky6TlFa40p-8OxzYy2M";
 
@@ -199,17 +198,7 @@ const addWall = () => {
       wallPosition[i]
     );
   }
-  // 添加带有自定义材质的墙体
-  viewer.entities.add({
-    wall: {
-      positions: wallPosition,
-      material: new CustomWallMaterial({
-        iamge: pyhsicalFence,
-        wallLength: wallLength, // 墙体的总长度
-        imageWidth: imageWidthInMeters, // 图片的宽度
-      }),
-    },
-  });
+
   // 设置相机视角以查看墙体
   viewer.camera.setView({
     destination: Cesium.Cartesian3.fromDegrees(
