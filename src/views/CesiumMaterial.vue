@@ -7,7 +7,9 @@ import {
   Cartesian3,
   Color,
   EllipseGeometry,
+  EllipsoidGeometry,
   GeometryInstance,
+  Material,
   MaterialAppearance,
   Primitive,
   Transforms,
@@ -35,12 +37,13 @@ const initMap = async () => {
     // },
   });
   addPolygon(viewer);
+  addSpherr(viewer);
 };
 
 const addPolygon = (viewer: Viewer) => {
   const position = Cartesian3.fromDegrees(80, 40, 5000);
   const radius = 40000.0;
-const a=  viewer.scene.primitives.add(
+  viewer.scene.primitives.add(
     new Primitive({
       geometryInstances: [
         new GeometryInstance({
@@ -55,9 +58,9 @@ const a=  viewer.scene.primitives.add(
         material: new RadarScanCircleMaterial({
           color: Cesium.Color.fromCssColorString("#03a9f4"),
           sectorColor: Cesium.Color.fromCssColorString("#e91e63"),
-          radians:Math.PI,
+          radians: Math.PI,
           offset: 0.2,
-          width:0.008,
+          width: 0.008,
         }),
         flat: false,
         faceForward: false,
@@ -70,11 +73,35 @@ const a=  viewer.scene.primitives.add(
   viewer.camera.setView({
     destination: Cartesian3.fromDegrees(80, 40, 500000),
   });
-  viewer.scene.postRender.addEventListener(() => {
-    // this.updatePosition(coordinates)
-    console.log('a',a);
-    
-  })
+  // viewer.scene.postRender.addEventListener(() => {
+  //   // this.updatePosition(coordinates)
+  //   console.log('a',a);
+
+  // })
+};
+
+const addSpherr = (viewer: Viewer) => {
+  // 定义球体的几何体
+  var ellipsoid = new Primitive({
+    geometryInstances: new GeometryInstance({
+      geometry: new EllipsoidGeometry({
+        radii: new Cartesian3(45000.0, 45000.0, 45000.0), // 球体的半径
+      }),
+      modelMatrix: Transforms.eastNorthUpToFixedFrame(
+        Cartesian3.fromDegrees(78, 40,45000) // 球体的位置
+      ),
+    }),
+    appearance: new MaterialAppearance({
+      material:  new RadarScanCircleMaterial({
+          color: Cesium.Color.fromCssColorString("#03a9f4"),
+          sectorColor: Cesium.Color.fromCssColorString("#e91e63"),
+          radians: Math.PI,
+          offset: 0.2,
+          width: 0.008,
+        }),
+    }),
+  });
+  viewer.scene.primitives.add(ellipsoid)
 };
 onMounted(() => {
   initMap();

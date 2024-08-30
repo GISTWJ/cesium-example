@@ -20,23 +20,11 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
     alpha=step(sp*(1.-width*10.),m);
     
     material.alpha=alpha;
-    
-    //   material.diffuse=vec3(color.rgb.r,color.rgb.g * czm_frameNumber /60.0,color.rgb.b);
-    //   if(alpha<backgroundColor.a){
-        //       alpha=backgroundColor.a;
-        //       diffuse=backgroundColor.rgb;
-    //   }else{
-        //       diffuse=color.rgb;
-    //   }
-    material.alpha=alpha;
-    material.diffuse=diffuse;
+
     
     // 绘制十字线
     if((st.s>.5-width/2.&&st.s<.5+width/2.)||(st.t>.5-width/2.&&st.t<.5+width/2.)){
         alpha=color.a;
-        
-        material.alpha=alpha;
-        material.diffuse=color.rgb;
     }
     
     // 绘制光晕
@@ -47,7 +35,7 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
         alpha=3.*(.5-ma)+alpha;
     }
     material.alpha=alpha;
-    material.diffuse=sectorColor.rgb;
+    material.diffuse=color.rgb;
     
     // 绘制扇区
     vec2 xy=materialInput.st;
@@ -57,14 +45,14 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
     // 半径
     float radius=sqrt(rx*rx+ry*ry);
     // 扇区叠加旋转角度
-    float sur=1.*czm_frameNumber/10.;
+    float sur=1.*czm_frameNumber/30.;
     float current_radians=at+radians+sur;
     xy=vec2(cos(current_radians)*radius,sin(current_radians)*radius);
     xy=vec2(xy.x+.5,xy.y+.5);
     
     // 扇区渐变色渲染
     if(xy.y-xy.x<0.&&xy.x>.5&&xy.y>.5){
-        material.alpha=alpha+backgroundColor.a;
+        material.alpha=alpha;
         material.diffuse=sectorColor.rgb;
     }
     return material;
