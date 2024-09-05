@@ -19,17 +19,36 @@ mat2 rotate(float rad){
 }
 czm_material czm_getMaterial(czm_materialInput materialInput)
 {
+    // czm_material material=czm_getDefaultMaterial(materialInput);
+    // vec4 c=gapColor;
+    // vec2 st=materialInput.st;
+    // float t=materialInput.st.t;
+    // float fillLength=15.*v_metersPerPixel;
+    // float dashLength=5.*v_metersPerPixel;
+    // // 每一段总长度
+    // float markerdelta=fillLength+dashLength;
+    // //总长度一半
+    // float halfd=markerdelta/2.;
+    // float l=st.s*lineLength;
+    // float muvx=mod(l,markerdelta);
+
+    // if(muvx>=halfd&&muvx<=halfd+dashLength){
+    //     float u=(muvx-halfd)/dashLength;
+    //     vec4 imageC=texture(image,vec2(u,10.));
+    //     c.xyzw=mix(c,imageC,imageC.w);
+    // }
+    
+    // vec4 fragColor=czm_gammaCorrect(c);
+
+    // material.emission=fragColor.rgb;
+    // material.alpha=fragColor.a;
+    // return material;
     czm_material material=czm_getDefaultMaterial(materialInput);
     
     vec2 st=materialInput.st;
     float t=materialInput.st.t;
     vec2 pos=rotate(v_polylineAngle)*gl_FragCoord.xy;
-    vec2 v_st;
-    v_st.s=st.s;
-    v_st.t=czm_readNonPerspective(st.t,w);
-    
     float dashPosition=fract(pos.x/(dashLength*czm_pixelRatio));
-    
     vec4 fragColor;
     fragColor=color*texture(image,vec2(dashPosition,t));
     if(fragColor.a==0.){
@@ -39,23 +58,6 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
     if(fragColor.a<.005){// matches 0/255 and 1/255
         discard;
     }
-    // float fillLength=10.0/v_metersPerPixel;
-    // float dashLength=5.0;
-    // float markerdelta=(fillLength+dashLength);
-    // float halfd=markerdelta/2.;
-    // float muvx=mod(st.s,markerdelta);
-    // fragColor=gapColor;
-    // if(muvx>=halfd&&muvx<=halfd+dashLength){
-        //     fragColor=color*texture(image,vec2(dashPosition,t));
-        //     if(fragColor.a==0.){
-            //         fragColor=gapColor;
-        //     }
-        
-        //     if(fragColor.a<.005){// matches 0/255 and 1/255
-            //         discard;
-        //     }
-    // }
-    
     fragColor=czm_gammaCorrect(fragColor);
     material.emission=fragColor.rgb;
     material.alpha=fragColor.a;

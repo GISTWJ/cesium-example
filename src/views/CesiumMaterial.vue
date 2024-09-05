@@ -112,10 +112,18 @@ const addSpherr = (viewer: Viewer) => {
 };
 
 const addLine = (viewer: Viewer) => {
+  const positionArr = Cartesian3.fromDegreesArray([78, 39, 78, 40, 77, 39]);
+  let lineLength = 0;
+  for (let i = 0; i < positionArr.length-1; i++) {
+    const distance = Cartesian3.distance(positionArr[i], positionArr[i + 1]);
+    lineLength += distance;
+  }
+  console.log('length',lineLength);
+  
   const lineGeometryInstances = new GeometryInstance({
     geometry: new PolylineGeometry({
       positions: Cartesian3.fromDegreesArray([78, 39, 78, 40, 77, 39]),
-      width: 10.0,
+      width: 8.0,
     }),
   });
   const lineAppearance = new PolylineMaterialAppearance({
@@ -126,6 +134,7 @@ const addLine = (viewer: Viewer) => {
           image: Arrow,
           gapColor: Color.fromCssColorString("#03a9f4"),
           dashLength: 16,
+          lineLength:lineLength,
         },
         source: PolylineArrowMeterial,
       },
