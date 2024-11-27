@@ -23,9 +23,9 @@ czm_material czm_getMaterial(czm_materialInput materialInput)
 
     
     // 绘制十字线
-    if((st.s>.5-width/2.&&st.s<.5+width/2.)||(st.t>.5-width/2.&&st.t<.5+width/2.)){
-        alpha=color.a;
-    }
+    // if((st.s>.5-width/2.&&st.s<.5+width/2.)||(st.t>.5-width/2.&&st.t<.5+width/2.)){
+    //     alpha=color.a;
+    // }
     
     // 绘制光晕
     float ma=mod(dis+offset,.5);

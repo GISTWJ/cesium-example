@@ -162,6 +162,17 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
+    path: "/loadData",
+    name: "loadData",
+    component: () => import("../views/LoadData.vue"),
+    meta: {
+      title: "LoadData",
+      activePath: "/loadData",
+      showInMenu: true,
+      icon: "el-icon-house",
+    },
+  },
+  {
     path: "/",
     redirect: "/cesiumLoadMap",
   },

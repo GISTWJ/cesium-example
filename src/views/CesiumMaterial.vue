@@ -23,6 +23,7 @@ import PolylineArrowMeterialVS from "../utils/Shaders/Material/PolylineArrowMete
 import PolylineArrowMeterialFS from "../utils/Shaders/Material/PolylineArrowMeterialFS.glsl";
 import PolylineArrowMeterial from "../utils/Shaders/Material/PolylineArrowMeterial.glsl";
 import Arrow from "../assets/arrow.png";
+import { DynamicDiffuseMaterial } from "../utils/DynamicDiffuseMaterial";
 
 Cesium.Ion.defaultAccessToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJjYTVhNjE0YS02YWVhLTQxNTAtYWI5NS1jYzUwMzliNmRjYjciLCJpZCI6OTc4NDgsImlhdCI6MTY1NTM4NDM0OH0.aT_4OCAgJ95R0l6Tg--u4jo9Ky6TlFa40p-8OxzYy2M";
@@ -42,8 +43,8 @@ const initMap = async () => {
     //   requestWebgl1: true,
     // },
   });
-  // addEllipse(viewer);
-  // addSpherr(viewer);
+  addEllipse(viewer);
+  addSpherr(viewer);
   addLine(viewer);
 };
 //primitive添加圆
@@ -77,14 +78,32 @@ const addEllipse = (viewer: Viewer) => {
       asynchronous: false,
     })
   );
+  const position2 = Cartesian3.fromDegrees(81, 40, 5000);
+
+  viewer.scene.primitives.add(
+    new Primitive({
+      geometryInstances: [
+        new GeometryInstance({
+          geometry: new EllipseGeometry({
+            center: position2,
+            semiMajorAxis: radius,
+            semiMinorAxis: radius,
+          }),
+        }),
+      ],
+      appearance: new MaterialAppearance({
+        material: new DynamicDiffuseMaterial(),
+        flat: false,
+        faceForward: false,
+        translucent: true,
+        closed: false,
+      }),
+      asynchronous: false,
+    })
+  );
   viewer.camera.setView({
     destination: Cartesian3.fromDegrees(80, 40, 500000),
   });
-  // viewer.scene.postRender.addEventListener(() => {
-  //   // this.updatePosition(coordinates)
-  //   console.log('a',a);
-
-  // })
 };
 //primitive添加球体
 const addSpherr = (viewer: Viewer) => {
@@ -114,12 +133,12 @@ const addSpherr = (viewer: Viewer) => {
 const addLine = (viewer: Viewer) => {
   const positionArr = Cartesian3.fromDegreesArray([78, 39, 78, 40, 77, 39]);
   let lineLength = 0;
-  for (let i = 0; i < positionArr.length-1; i++) {
+  for (let i = 0; i < positionArr.length - 1; i++) {
     const distance = Cartesian3.distance(positionArr[i], positionArr[i + 1]);
     lineLength += distance;
   }
-  console.log('length',lineLength);
-  
+  console.log("length", lineLength);
+
   const lineGeometryInstances = new GeometryInstance({
     geometry: new PolylineGeometry({
       positions: Cartesian3.fromDegreesArray([78, 39, 78, 40, 77, 39]),
@@ -134,7 +153,7 @@ const addLine = (viewer: Viewer) => {
           image: Arrow,
           gapColor: Color.fromCssColorString("#03a9f4"),
           dashLength: 16,
-          lineLength:lineLength,
+          lineLength: lineLength,
         },
         source: PolylineArrowMeterial,
       },
