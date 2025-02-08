@@ -1,0 +1,1562 @@
+{
+  "cmp_id": "f0c1e0eb-262d-4979-9c86-3f5d4541d126_PerformanceCloud_SingleObjectListView_MyAssessmentList",
+  "cmp_name": "PerformanceCloud_SingleObjectListView_MyAssessmentList",
+  "cmp_type": "TableList",
+  "cmp_data": {
+    "hasCheckColumn": false,
+    "paging": {
+      "total": 6,
+      "capacity": 30,
+      "page": 0,
+      "capacityList": [
+        15,
+        30,
+        60,
+        100
+      ]
+    },
+    "metaObjName": "PerformanceCloud.Assessment",
+    "viewName": "PerformanceCloud.SingleObjectListView.MyAssessmentList",
+    "sort_fields": [
+      {
+        "sort_column": "CreatedTime",
+        "sort_dir": "desc"
+      }
+    ],
+    "advance": {
+      "cmp_render": {
+        "viewPath": "",
+        "status": "enable"
+      },
+      "layout": {}
+    },
+    "isCustomListView": false,
+    "isCustomListViewExisted": false,
+    "isAvatars": false,
+    "hasRowHandler": false,
+    "isSyncRowHandler": true,
+    "ext_data": {
+      "ListViewLabel": "我的绩效列表",
+      "SortCursor": "[1687831802000,361092186802369659]"
+    },
+    "isFrozenOperationColumnHandler": false,
+    "operateColumWidth": 140,
+    "isEnableGlobleCheck": false,
+    "extendsParam": "",
+    "getTreeNodeUrl": null,
+    "description": "我的绩效对应的列表"
+  },
+  "sub_cmps": [
+    {
+      "cmp_id": "f0c1e0eb-262d-4979-9c86-3f5d4541d126",
+      "cmp_name": "_id",
+      "cmp_type": "MetaColumn",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "_id",
+        "width": null,
+        "alignment": null,
+        "name": "_id",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "showIndex": 0,
+        "visible": false,
+        "signFormat": null,
+        "sortable": false,
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 0,
+        "controlPack": "",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~3167b274-00df-4115-b3c1-32b1dc5dfa0f",
+      "cmp_name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+      "cmp_type": "DropDownList",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "JoinColumn",
+        "title": "年度",
+        "width": null,
+        "alignment": "default",
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": true,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 1,
+        "visible": true,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "DropDownList",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~1f50815b-a9c4-4e30-a3b3-c0218115712a",
+      "cmp_name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+      "cmp_type": "DropDownList",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "JoinColumn",
+        "title": "周期",
+        "width": null,
+        "alignment": "default",
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": true,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 2,
+        "visible": true,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "DropDownList",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~d145b725-64ab-4c58-af9f-b420b16cb6a2",
+      "cmp_name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+      "cmp_type": "TextBox",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": {
+          "isAutoMulLang_paas": "true"
+        },
+        "type": "link",
+        "columnType": "JoinColumn",
+        "title": "活动名称",
+        "width": null,
+        "alignment": "default",
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "isLink": true,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": true,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "linkURL": "//cloud.italent.cn/mrest/PerformanceCloud/PerformanceCloud/100000/PerformanceURL/DistinguishUrlForV3AndV5?assessmentId={data._id}&stepInfoId={data.WorkflowStepInfoId}&fromType={data.fromType}&sourceType=myAssessmentList",
+        "linkType": "customPage",
+        "OpenMode": "_self",
+        "showIndex": 3,
+        "visible": true,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "TextBox",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "ed469376-24bb-4c45-bed2-fcb16b65cabe",
+      "cmp_name": "CurrentStepId",
+      "cmp_type": "LookupV2",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "当前步骤",
+        "width": null,
+        "alignment": "default",
+        "name": "CurrentStepId",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 4,
+        "visible": true,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "LookupV2",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "c81cc5a8-c75b-4589-b4ea-65673c5fae62",
+      "cmp_name": "OStatus",
+      "cmp_type": "DropDownList",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "绩效状态",
+        "width": null,
+        "alignment": null,
+        "name": "OStatus",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "showIndex": 5,
+        "visible": true,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "DropDownList",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "ce8dc497-1bf3-4e16-ab97-bc6f7c5107ac",
+      "cmp_name": "FinalScore",
+      "cmp_type": "Double",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "总分",
+        "width": null,
+        "alignment": "default",
+        "name": "FinalScore",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 6,
+        "visible": true,
+        "signFormat": null,
+        "sortable": true,
+        "sortField": "FinalScore",
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 2,
+        "dataType": 8,
+        "controlPack": "Double",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "bd246ac3-9b85-4235-a369-c2d0262e63fe",
+      "cmp_name": "TotalScoreRuleIdLookup",
+      "cmp_type": "LookupV2",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "总等级",
+        "width": null,
+        "alignment": "default",
+        "name": "TotalScoreRuleIdLookup",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 7,
+        "visible": false,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "LookupV2",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "dd54c0f5-b22a-4d25-8879-2066cd378ed6",
+      "cmp_name": "ScoreRuleName",
+      "cmp_type": "TextBox",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "总等级",
+        "width": null,
+        "alignment": "default",
+        "name": "ScoreRuleName",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 8,
+        "visible": true,
+        "signFormat": null,
+        "sortable": true,
+        "sortField": "ScoreRuleOrderIndex",
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "TextBox",
+        "isDownload": false
+      }
+    },
+    {
+      "cmp_id": "abca834f-cb26-4907-a278-f0023c27c037",
+      "cmp_name": "V3AssessmentId",
+      "cmp_type": "TextBox",
+      "cmp_data": {
+        "pinnedOrientation": 0,
+        "canShow": true,
+        "canEdit": true,
+        "isTreeNodeColumn": false,
+        "containsTrailingZero": false,
+        "extendParams": null,
+        "columnType": "MetaColumn",
+        "title": "V3绩效ID",
+        "width": null,
+        "alignment": "default",
+        "name": "V3AssessmentId",
+        "isLink": false,
+        "isCustomeApproval": false,
+        "isPushScreenLink": false,
+        "editable": false,
+        "isrequired": false,
+        "ismetafieldrequired": false,
+        "showhelp": false,
+        "frozen": false,
+        "OpenMode": "_self",
+        "showIndex": 9,
+        "visible": false,
+        "signFormat": null,
+        "sortable": false,
+        "formatType": "default",
+        "precision": 0,
+        "metaFieldPrecision": 0,
+        "dataType": 2,
+        "controlPack": "TextBox",
+        "isDownload": false
+      }
+    }
+  ],
+  "rows": [
+    {
+      "cmp_id": "ec1ea006-1498-4406-bacd-73ba93b9ec15",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "ec1ea006-1498-4406-bacd-73ba93b9ec15",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    },
+    {
+      "cmp_id": "44ee5f90-e0c7-4bf0-8990-a91417d0026e",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "44ee5f90-e0c7-4bf0-8990-a91417d0026e",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    },
+    {
+      "cmp_id": "50a3c4ae-e8ef-460b-aea6-03028bd4f170",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "50a3c4ae-e8ef-460b-aea6-03028bd4f170",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    },
+    {
+      "cmp_id": "b9eb3079-7c96-44da-8a4a-6a98b4d6c062",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "b9eb3079-7c96-44da-8a4a-6a98b4d6c062",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    },
+    {
+      "cmp_id": "c864f617-a571-4a4c-bede-bce9b3c5c5ed",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "c864f617-a571-4a4c-bede-bce9b3c5c5ed",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    },
+    {
+      "cmp_id": "6284204c-0ff9-4130-aaec-9db97ae63e6e",
+      "cmp_type": "TableListRow",
+      "cmp_data": {
+        "isSyncRowHandler": true,
+        "id": "6284204c-0ff9-4130-aaec-9db97ae63e6e",
+        "hasRowHandler": false
+      },
+      "sub_cmps": {}
+    }
+  ],
+  "biz_data": [
+    {
+      "_id": {
+        "name": "_id",
+        "text": "ec1ea006-1498-4406-bacd-73ba93b9ec15",
+        "textlist": null,
+        "num": "",
+        "value": "ec1ea006-1498-4406-bacd-73ba93b9ec15"
+      },
+      "Name": {
+        "name": "Name",
+        "text": "2025年中央研究院1月份绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2025年中央研究院1月份绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "进行中",
+        "textlist": null,
+        "num": "",
+        "value": "3"
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "目标制定",
+        "textlist": [
+          "目标制定"
+        ],
+        "num": "",
+        "value": "0835f6d5-f37a-4d29-9a95-cb93c6efe3e9"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2025",
+        "textlist": null,
+        "num": "",
+        "value": "2025"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "一月",
+        "textlist": null,
+        "num": "",
+        "value": "1"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "2025年中央研究院1月份绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2025年中央研究院1月份绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=8611aa94b7da5ef10f03f6bf7a089ccfb07f0335&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=8611aa94b7da5ef10f03f6bf7a089ccfb07f0335&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "468be15f-983e-40e4-aac3-3148493bccb6",
+        "textlist": null,
+        "num": "",
+        "value": "468be15f-983e-40e4-aac3-3148493bccb6"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "1",
+        "textlist": null,
+        "num": "",
+        "value": "1"
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ComputationScore": {
+        "name": "ComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScore": {
+        "name": "TotalScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurScore": {
+        "name": "CurScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchTotalScoreRuleIdLookup": {
+        "name": "MatchTotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScoreRuleId": {
+        "name": "TotalScoreRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodRuleId": {
+        "name": "CurPeriodRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodMatchRuleId": {
+        "name": "CurPeriodMatchRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodAdjustRuleId": {
+        "name": "CurPeriodAdjustRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurRuleName": {
+        "name": "CurRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "PIPResult": {
+        "name": "PIPResult",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "FinalCoeficnt": {
+        "name": "FinalCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustCoeficnt": {
+        "name": "AdjustCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "RangeCoeficnt": {
+        "name": "RangeCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "Coeficnt": {
+        "name": "Coeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CalibrationComments": {
+        "name": "CalibrationComments",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityScore": {
+        "name": "AbilityScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityComputationScore": {
+        "name": "AbilityComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityScore": {
+        "name": "AdjustAbilityScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityRuleId": {
+        "name": "AbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchAbilityRuleId": {
+        "name": "MatchAbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityRuleId": {
+        "name": "AdjustAbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityRuleName": {
+        "name": "AdjustAbilityRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesScore": {
+        "name": "ValuesScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesComputationScore": {
+        "name": "ValuesComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesScore": {
+        "name": "AdjustValuesScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesRuleId": {
+        "name": "ValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchValuesRuleId": {
+        "name": "MatchValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesRuleId": {
+        "name": "AdjustValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesRuleName": {
+        "name": "AdjustValuesRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      }
+    },
+    {
+      "_id": {
+        "name": "_id",
+        "text": "44ee5f90-e0c7-4bf0-8990-a91417d0026e",
+        "textlist": null,
+        "num": "",
+        "value": "44ee5f90-e0c7-4bf0-8990-a91417d0026e"
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "Name": {
+        "name": "Name",
+        "text": "2024年中央研究院第四季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第四季度绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "进行中",
+        "textlist": null,
+        "num": "",
+        "value": "3"
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "评分审核",
+        "textlist": [
+          "评分审核"
+        ],
+        "num": "",
+        "value": "b12711f5-6f85-41ee-a67a-1bf0baeb794d"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2024",
+        "textlist": null,
+        "num": "",
+        "value": "2024"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "第四季度",
+        "textlist": null,
+        "num": "",
+        "value": "24"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "2024年中央研究院第四季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第四季度绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=1981faf38978c1dd8384dbbaa1fb35077e2d6757&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=1981faf38978c1dd8384dbbaa1fb35077e2d6757&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "e784948b-c257-4432-8145-ea08561ca7ea",
+        "textlist": null,
+        "num": "",
+        "value": "e784948b-c257-4432-8145-ea08561ca7ea"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "4",
+        "textlist": null,
+        "num": "",
+        "value": "4"
+      },
+      "ComputationScore": {
+        "name": "ComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScore": {
+        "name": "TotalScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurScore": {
+        "name": "CurScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchTotalScoreRuleIdLookup": {
+        "name": "MatchTotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScoreRuleId": {
+        "name": "TotalScoreRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodRuleId": {
+        "name": "CurPeriodRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodMatchRuleId": {
+        "name": "CurPeriodMatchRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodAdjustRuleId": {
+        "name": "CurPeriodAdjustRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurRuleName": {
+        "name": "CurRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "PIPResult": {
+        "name": "PIPResult",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "FinalCoeficnt": {
+        "name": "FinalCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustCoeficnt": {
+        "name": "AdjustCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "RangeCoeficnt": {
+        "name": "RangeCoeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "Coeficnt": {
+        "name": "Coeficnt",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CalibrationComments": {
+        "name": "CalibrationComments",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityScore": {
+        "name": "AbilityScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityComputationScore": {
+        "name": "AbilityComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityScore": {
+        "name": "AdjustAbilityScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AbilityRuleId": {
+        "name": "AbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchAbilityRuleId": {
+        "name": "MatchAbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityRuleId": {
+        "name": "AdjustAbilityRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustAbilityRuleName": {
+        "name": "AdjustAbilityRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesScore": {
+        "name": "ValuesScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesComputationScore": {
+        "name": "ValuesComputationScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesScore": {
+        "name": "AdjustValuesScore",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "ValuesRuleId": {
+        "name": "ValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "MatchValuesRuleId": {
+        "name": "MatchValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesRuleId": {
+        "name": "AdjustValuesRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "AdjustValuesRuleName": {
+        "name": "AdjustValuesRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      }
+    },
+    {
+      "_id": {
+        "name": "_id",
+        "text": "50a3c4ae-e8ef-460b-aea6-03028bd4f170",
+        "textlist": null,
+        "num": "",
+        "value": "50a3c4ae-e8ef-460b-aea6-03028bd4f170"
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "合格",
+        "textlist": null,
+        "num": "",
+        "value": "合格"
+      },
+      "Name": {
+        "name": "Name",
+        "text": "2024年中央研究院第三季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第三季度绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "已结束",
+        "textlist": null,
+        "num": "",
+        "value": "2"
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "合格",
+        "textlist": [
+          "合格"
+        ],
+        "num": "",
+        "value": "8158b6c7-492c-4435-a316-e5807850b8f6"
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "97.3",
+        "textlist": null,
+        "num": "",
+        "value": "97.3"
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "",
+        "textlist": [
+          ""
+        ],
+        "num": "",
+        "value": "00000000-0000-0000-0000-000000000000"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2024",
+        "textlist": null,
+        "num": "",
+        "value": "2024"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "第三季度",
+        "textlist": null,
+        "num": "",
+        "value": "23"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "2024年中央研究院第三季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第三季度绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=9b3863c4c11e3f12b90e7cc7631f0a6aedea2d51&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=9b3863c4c11e3f12b90e7cc7631f0a6aedea2d51&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "cf492b62-4d45-4634-a99c-713f0ffa676f",
+        "textlist": null,
+        "num": "",
+        "value": "cf492b62-4d45-4634-a99c-713f0ffa676f"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "4",
+        "textlist": null,
+        "num": "",
+        "value": "4"
+      }
+    },
+    {
+      "_id": {
+        "name": "_id",
+        "text": "b9eb3079-7c96-44da-8a4a-6a98b4d6c062",
+        "textlist": null,
+        "num": "",
+        "value": "b9eb3079-7c96-44da-8a4a-6a98b4d6c062"
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "合格",
+        "textlist": null,
+        "num": "",
+        "value": "合格"
+      },
+      "Name": {
+        "name": "Name",
+        "text": "2024年中央研究院第二季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第二季度绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "已结束",
+        "textlist": null,
+        "num": "",
+        "value": "2"
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "合格",
+        "textlist": [
+          "合格"
+        ],
+        "num": "",
+        "value": "6a512da4-83b8-4294-9212-c9a75160ab3b"
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "94.4",
+        "textlist": null,
+        "num": "",
+        "value": "94.4"
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "",
+        "textlist": [
+          ""
+        ],
+        "num": "",
+        "value": "00000000-0000-0000-0000-000000000000"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2024",
+        "textlist": null,
+        "num": "",
+        "value": "2024"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "第二季度",
+        "textlist": null,
+        "num": "",
+        "value": "22"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "2024年中央研究院第二季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第二季度绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=31997165510b38a44515edf80f2c8fd3681bd9c3&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=31997165510b38a44515edf80f2c8fd3681bd9c3&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "8c5952e7-b741-4de1-8b58-daa7d58ba5ad",
+        "textlist": null,
+        "num": "",
+        "value": "8c5952e7-b741-4de1-8b58-daa7d58ba5ad"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "4",
+        "textlist": null,
+        "num": "",
+        "value": "4"
+      }
+    },
+    {
+      "_id": {
+        "name": "_id",
+        "text": "c864f617-a571-4a4c-bede-bce9b3c5c5ed",
+        "textlist": null,
+        "num": "",
+        "value": "c864f617-a571-4a4c-bede-bce9b3c5c5ed"
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "合格",
+        "textlist": null,
+        "num": "",
+        "value": "合格"
+      },
+      "Name": {
+        "name": "Name",
+        "text": "2024年中央研究院第一季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第一季度绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "已结束",
+        "textlist": null,
+        "num": "",
+        "value": "2"
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "合格",
+        "textlist": [
+          "合格"
+        ],
+        "num": "",
+        "value": "4994d423-b066-4ba6-9a1c-86a165db9e40"
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "96.8",
+        "textlist": null,
+        "num": "",
+        "value": "96.8"
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "",
+        "textlist": [
+          ""
+        ],
+        "num": "",
+        "value": "00000000-0000-0000-0000-000000000000"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2024",
+        "textlist": null,
+        "num": "",
+        "value": "2024"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "第一季度",
+        "textlist": null,
+        "num": "",
+        "value": "21"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "2024年中央研究院第一季度绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "2024年中央研究院第一季度绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=885cf5cf455821db122d74e338c8d104970f1289&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=885cf5cf455821db122d74e338c8d104970f1289&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "c80b1b16-b508-486d-ac9d-ae80925c44df",
+        "textlist": null,
+        "num": "",
+        "value": "c80b1b16-b508-486d-ac9d-ae80925c44df"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "4",
+        "textlist": null,
+        "num": "",
+        "value": "4"
+      }
+    },
+    {
+      "_id": {
+        "name": "_id",
+        "text": "6284204c-0ff9-4130-aaec-9db97ae63e6e",
+        "textlist": null,
+        "num": "",
+        "value": "6284204c-0ff9-4130-aaec-9db97ae63e6e"
+      },
+      "ScoreRuleName": {
+        "name": "ScoreRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "Name": {
+        "name": "Name",
+        "text": "试用期绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "试用期绩效考核"
+      },
+      "OStatus": {
+        "name": "OStatus",
+        "text": "已结束",
+        "textlist": null,
+        "num": "",
+        "value": "2"
+      },
+      "TotalScoreRuleIdLookup": {
+        "name": "TotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "FinalScore": {
+        "name": "FinalScore",
+        "text": "88",
+        "textlist": null,
+        "num": "",
+        "value": "88"
+      },
+      "CurrentStepId": {
+        "name": "CurrentStepId",
+        "text": "",
+        "textlist": [
+          ""
+        ],
+        "num": "",
+        "value": "00000000-0000-0000-0000-000000000000"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Year",
+        "text": "2022",
+        "textlist": null,
+        "num": "",
+        "value": "2022"
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Period",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": null
+      },
+      "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name": {
+        "name": "0d96f61a-71f3-45cb-8a3f-51bb776f245d~Name",
+        "text": "试用期绩效考核",
+        "textlist": null,
+        "num": "",
+        "value": "试用期绩效考核"
+      },
+      "ObjectDataAction": {
+        "name": "ObjectDataAction",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": "Normal"
+      },
+      "__defaultSign": {
+        "name": "__defaultSign",
+        "text": "bc_sign=5057405ff3f0c4243fbe1c932fd948b6d842b0a5&bc_ts=1736330144299&bc_nonce=DNgohf",
+        "textlist": null,
+        "num": "",
+        "value": "bc_sign=5057405ff3f0c4243fbe1c932fd948b6d842b0a5&bc_ts=1736330144299&bc_nonce=DNgohf"
+      },
+      "WorkflowStepInfoId": {
+        "name": "WorkflowStepInfoId",
+        "text": "707d4d75-2154-4256-b94e-2ee0ce9b4c0b",
+        "textlist": null,
+        "num": "",
+        "value": "707d4d75-2154-4256-b94e-2ee0ce9b4c0b"
+      },
+      "fromType": {
+        "name": "fromType",
+        "text": "4",
+        "textlist": null,
+        "num": "",
+        "value": "4"
+      },
+      "MatchTotalScoreRuleIdLookup": {
+        "name": "MatchTotalScoreRuleIdLookup",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "TotalScoreRuleId": {
+        "name": "TotalScoreRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodRuleId": {
+        "name": "CurPeriodRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodMatchRuleId": {
+        "name": "CurPeriodMatchRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurPeriodAdjustRuleId": {
+        "name": "CurPeriodAdjustRuleId",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "CurRuleName": {
+        "name": "CurRuleName",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      },
+      "PIPResult": {
+        "name": "PIPResult",
+        "text": "",
+        "textlist": null,
+        "num": "",
+        "value": ""
+      }
+    }
+  ]
+}

@@ -156,7 +156,7 @@ out float w;
 
 void main()
 {
-   float expandDir=expandAndWidth.x;
+   float expandDir=expandAndWidth.x; 
    float width=abs(expandAndWidth.y)+.5;
    bool usePrev=expandAndWidth.y<0.;
    

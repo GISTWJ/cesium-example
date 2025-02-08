@@ -23,7 +23,7 @@ const initMap = async () => {
 
   const cesiumThree3DGS = new CesiumThree3DGS(viewer);
   const options: Load3dgsOptions = {
-    splatUrl: "/public/SuzhouMuseum.splat",
+    splatUrl: "/public/yl.ply",
     lat: 39.67611058812877,
     lon: 116.22989511700409,
     height: 0,
@@ -31,7 +31,7 @@ const initMap = async () => {
     scale: 5,
     camera: {
       offset: { x: -5, y: 18, z: 0 },
-      headingPitchRoll: { heading: 240, pitch: 5, roll: 0 },
+      headingPitchRoll: { heading: 0, pitch: 5, roll: 0 },
     },
   };
   // 设置相机为俯视视角
@@ -49,6 +49,28 @@ const initMap = async () => {
   });
   viewer.scene.postRender.addEventListener(() => {
     cesiumThree3DGS.renderThreeObj();
+  });
+  const billboardOptions = {
+    image: "/public/cz.png", // 广告牌图片路径
+    position: Cesium.Cartesian3.fromDegrees(
+      116.22989511700409,
+      39.67611058812877,
+      100
+    ), // 广告牌位置
+    width: 32, // 广告牌宽度
+    height: 32, // 广告牌高度
+  };
+
+  const billboardEntity = viewer.entities.add({
+    position: billboardOptions.position,
+    billboard: {
+      image: billboardOptions.image,
+      width: billboardOptions.width,
+      height: billboardOptions.height,
+      verticalOrigin: Cesium.VerticalOrigin.BOTTOM, // 垂直原点设置为底部
+      // 添加以下属性来禁用深度测试
+      disableDepthTestDistance: Number.POSITIVE_INFINITY,
+    },
   });
   cesiumThree3DGS.remove3dgsAll();
   cesiumThree3DGS.load3dgs(options);

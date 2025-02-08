@@ -1,10 +1,3 @@
-<!--
- * @Author: twj
- * @Date: 2024-01-25 09:19:02
- * @LastEditTime: 2024-01-25 12:00:28
- * @LastEditors: twj
- * @Description: cesium-example
--->
 <template>
   <div class="common-layout">
     <el-container>
